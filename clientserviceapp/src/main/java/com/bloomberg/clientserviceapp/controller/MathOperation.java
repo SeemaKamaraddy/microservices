@@ -14,7 +14,7 @@ import com.bloomberg.clientserviceapp.service.MathService;
 
 
 @RestController
-@RequestMapping("/rootlevel")
+@RequestMapping("/clientServiceApp")
 public class MathOperation {
 
 	public static final Logger logger = LoggerFactory.getLogger(MathOperation.class);

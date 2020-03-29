@@ -23,10 +23,4 @@ public class MathOperation {
 		logger.info("Inside Clientservice first server : MathOperation");
 		return mathService.multiply(num1, num2);
 	}
-	
-	@GetMapping("/product/feign/{num1}/{num2}")
-	public ResponseEntity<Integer> multiplyFeign(@PathVariable int num1, @PathVariable int num2) {
-		logger.info("Inside Clientservice first server : MathOperation");
-		return mathService.getMultiplicationfromFeign(num1, num2);
-	}
 }

@@ -21,10 +21,8 @@ public class MathService {
 	public static final Logger logger = LoggerFactory.getLogger(MathService.class);
 	
 	/*
-	 * @Autowired private Configuration configuration;
+	 * @Value("${client-service.routeUrl}") private String serviceUrl;
 	 */
-	@Value("${client-service.routeUrl}")
-	private String serviceUrl;
 
 	@Autowired
 	private ClientServiceAppProxy clientServiceAppProxy;
@@ -34,22 +32,19 @@ public class MathService {
 		return getMultiplication(a,b);
 	}
 	
-	private ResponseEntity<Integer> getMultiplication(int a,int b)
-	{
-		logger.info("Math Operation Service URL:"+serviceUrl);
-	    Map<String, Integer> params = new HashMap<String, Integer>();
-	    params.put("num1", a);
-	    params.put("num2", b);
-	     
-	    RestTemplate restTemplate = new RestTemplate();
-	    ResponseEntity<Integer> result = restTemplate.getForEntity(serviceUrl, Integer.class, params);
-	     
-	    System.out.println("Result from the rest service:"+result);
-	    return result;
-	}
+	/*
+	 * private ResponseEntity<Integer> getMultiplication(int a,int b) {
+	 * logger.info("Math Operation Service URL:"+serviceUrl); Map<String, Integer>
+	 * params = new HashMap<String, Integer>(); params.put("num1", a);
+	 * params.put("num2", b);
+	 * 
+	 * RestTemplate restTemplate = new RestTemplate(); ResponseEntity<Integer>
+	 * result = restTemplate.getForEntity(serviceUrl, Integer.class, params);
+	 * 
+	 * System.out.println("Result from the rest service:"+result); return result; }
+	 */
 	
-	public ResponseEntity<Integer> getMultiplicationfromFeign(int a,int b){
-		logger.info("Inside getMultiplicationfromFeign :"+serviceUrl);
+	public ResponseEntity<Integer> getMultiplication(int a,int b){
 		int result = clientServiceAppProxy.multiply(a, b);
 		return new ResponseEntity<Integer>(result,HttpStatus.OK);
 	}

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RibbonClient(name="client-service-app")
 public interface ClientServiceAppProxy {
 	
-	@GetMapping("/rootlevel/product/{num1}/{num2}")
+	@GetMapping("/clientServiceApp/product/{num1}/{num2}")
 	public int multiply(@PathVariable("num1") int num1, @PathVariable("num2") int num2);
 	
 }
